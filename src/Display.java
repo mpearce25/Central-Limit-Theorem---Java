@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 
 public class Display {
@@ -23,6 +24,7 @@ public class Display {
 
 		// Create and populate the panel.
 		JPanel panel1 = new JPanel(new GridBagLayout());
+		panel1.setBorder(new EmptyBorder(5,10,5,5));
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridwidth = 1;
