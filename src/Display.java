@@ -93,8 +93,8 @@ public class Display {
 		c.gridy = 6;
 		panel1.add(statsTextField2, c);
 
-		JButton closeButton = new JButton("Generate Random");
-		closeButton.addActionListener(new ActionListener() {
+		JButton generateRandomButton = new JButton("Generate Random");
+		generateRandomButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -102,7 +102,10 @@ public class Display {
 				Double sd = Double.parseDouble(sdTextField.getText());
 				Integer sampleSize = Integer.parseInt(sampleSizeTextField.getText());
 				Integer numberSamples = Integer.parseInt(numberSamplesTextField.getText());
-
+				
+				meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples); //populates then clera to avoid null
+				meansArrayList.clear();
+			model.clear();
 				meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples);
 				populateArray(meansArrayList);
 				statsTextField1.setText(Double.toString(calculateMean(meansArrayList)));
@@ -112,7 +115,7 @@ public class Display {
 		});
 		c.gridx = 0;
 		c.gridy = 4;
-		panel1.add(closeButton, c);
+		panel1.add(generateRandomButton, c);
 
 		JButton clearButton = new JButton("Clear");
 		clearButton.addActionListener(new ActionListener() {

@@ -1,3 +1,4 @@
+import java.security.SecureRandom;
 import java.util.*;
 
 public class CentralLimitTheorem {
@@ -9,7 +10,7 @@ public class CentralLimitTheorem {
 	}
 
 	public static ArrayList<Double> generateRandom(double mean, double sd, int sampleSize, int numberSamples) {
-		Random rand = new Random();
+		SecureRandom rand = new SecureRandom();
 		ArrayList<Double> means = new ArrayList<Double>();
 
 		double overallSum = 0;
