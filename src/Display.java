@@ -12,6 +12,7 @@ public class Display {
 	private static JFrame frame;
 	private static DefaultListModel model;
 	private static ArrayList<Double> meansArrayList;
+	private static boolean firstRun = true;
 
 	public static void initDisplay() {
 
@@ -103,9 +104,12 @@ public class Display {
 				Integer sampleSize = Integer.parseInt(sampleSizeTextField.getText());
 				Integer numberSamples = Integer.parseInt(numberSamplesTextField.getText());
 				
-				meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples); //populates then clera to avoid null
-				meansArrayList.clear();
-			model.clear();
+				//meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples); //populates then clera to avoid null
+				if (!firstRun){
+					meansArrayList.clear();
+					model.clear();
+				}
+				firstRun = false;
 				meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples);
 				populateArray(meansArrayList);
 				statsTextField1.setText(Double.toString(calculateMean(meansArrayList)));
