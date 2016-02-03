@@ -73,15 +73,25 @@ public class Display {
 		c.gridy = 3;
 		panel1.add(numberSamplesTextField, c);
 
-		JLabel statsLabel = new JLabel("Mean of Means", JLabel.LEADING);
+		JLabel statsLabel1 = new JLabel("Mean of Means", JLabel.LEADING);
 		c.gridx = 0;
 		c.gridy = 5;
-		panel1.add(statsLabel, c);
-		JTextField statsTextField = new JTextField(10);
-		statsLabel.setLabelFor(statsTextField);
+		panel1.add(statsLabel1, c);
+		JTextField statsTextField1 = new JTextField(10);
+		statsLabel1.setLabelFor(statsTextField1);
 		c.gridx = 1;
 		c.gridy = 5;
-		panel1.add(statsTextField, c);
+		panel1.add(statsTextField1, c);
+		
+		JLabel statsLabel2 = new JLabel("SD of Means", JLabel.LEADING);
+		c.gridx = 0;
+		c.gridy = 6;
+		panel1.add(statsLabel2, c);
+		JTextField statsTextField2 = new JTextField(10);
+		statsLabel2.setLabelFor(statsTextField2);
+		c.gridx = 1;
+		c.gridy = 6;
+		panel1.add(statsTextField2, c);
 
 		JButton closeButton = new JButton("Generate Random");
 		closeButton.addActionListener(new ActionListener() {
@@ -95,7 +105,8 @@ public class Display {
 
 				meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples);
 				populateArray(meansArrayList);
-				statsTextField.setText(Double.toString(calculateMean(meansArrayList)));
+				statsTextField1.setText(Double.toString(calculateMean(meansArrayList)));
+				statsTextField2.setText(Double.toString(calculateSD(meansArrayList)));
 
 			}
 		});
@@ -111,7 +122,8 @@ public class Display {
 				sdTextField.setText("");
 				sampleSizeTextField.setText("");
 				numberSamplesTextField.setText("");
-				statsTextField.setText("");
+				statsTextField1.setText("");
+				statsTextField2.setText("");
 				meansArrayList.clear();
 				model.clear();
 
@@ -156,5 +168,17 @@ public class Display {
 		}
 
 		return total / array.size();
+	}
+	public static Double calculateSD(ArrayList<Double> array) {
+		Double mean = calculateMean(array); 
+		Double total = 0.0;
+		
+		for (Double doub: array){
+			total += Math.pow(doub - mean, 2);
+			
+		}
+		double sd = Math.sqrt(total / (array.size() - 1));
+
+		return sd;
 	}
 }
