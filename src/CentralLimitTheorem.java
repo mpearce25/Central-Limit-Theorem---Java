@@ -17,12 +17,12 @@ public class CentralLimitTheorem {
 		for (int x = 0; x < numberSamples; x++) {
 
 			double tempSum = 0;
-			for (int k = 0; k < 5; k++) {
+			for (int k = 0; k < sampleSize; k++) {
 				tempSum += (rand.nextGaussian() * sd) + mean;
 
 			}
 
-			means.add(tempSum / 5);
+			means.add(tempSum / sampleSize);
 
 		}
 
