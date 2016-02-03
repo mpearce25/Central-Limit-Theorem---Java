@@ -23,9 +23,7 @@ public class CentralLimitTheorem {
 			}
 
 			means.add(tempSum / sampleSize);
-
 		}
-
 		return means;
 	}
 }
