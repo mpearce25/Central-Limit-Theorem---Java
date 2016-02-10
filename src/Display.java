@@ -34,18 +34,9 @@ public class Display {
 		c.ipady = 10;
 		c.fill = GridBagConstraints.HORIZONTAL;
 
-		JLabel meanLabel = new JLabel("Mean", JLabel.LEADING);
-		c.gridx = 0;
-		c.gridy = 0;
-		panel1.add(meanLabel, c);
+		
 
-		JTextField meanTextField = new JTextField(10);
-		meanLabel.setLabelFor(meanTextField);
-		c.gridx = 1;
-		c.gridy = 0;
-		panel1.add(meanTextField, c);
-
-		JLabel sdLabel = new JLabel("Standard Deviation", JLabel.LEADING);
+		JLabel sdLabel = new JLabel("Probablity", JLabel.LEADING);
 		c.gridx = 0;
 		c.gridy = 1;
 		panel1.add(sdLabel, c);
@@ -76,7 +67,7 @@ public class Display {
 		c.gridy = 3;
 		panel1.add(numberSamplesTextField, c);
 
-		JLabel statsLabel1 = new JLabel("Mean of Means", JLabel.LEADING);
+		JLabel statsLabel1 = new JLabel("Mean", JLabel.LEADING);
 		c.gridx = 0;
 		c.gridy = 5;
 		panel1.add(statsLabel1, c);
@@ -86,7 +77,7 @@ public class Display {
 		c.gridy = 5;
 		panel1.add(statsTextField1, c);
 		
-		JLabel statsLabel2 = new JLabel("SD of Means", JLabel.LEADING);
+		JLabel statsLabel2 = new JLabel("SD", JLabel.LEADING);
 		c.gridx = 0;
 		c.gridy = 6;
 		panel1.add(statsLabel2, c);
@@ -101,8 +92,8 @@ public class Display {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Double mean = Double.parseDouble(meanTextField.getText());
-				Double sd = Double.parseDouble(sdTextField.getText());
+
+				Double probability = Double.parseDouble(sdTextField.getText());
 				Integer sampleSize = Integer.parseInt(sampleSizeTextField.getText());
 				Integer numberSamples = Integer.parseInt(numberSamplesTextField.getText());
 				
@@ -112,7 +103,7 @@ public class Display {
 					model.clear();
 				}
 				firstRun = false;
-				meansArrayList = CentralLimitTheorem.generateRandom(mean, sd, sampleSize, numberSamples);
+				meansArrayList = CentralLimitTheorem.generateRandom(probability, sampleSize, numberSamples);
 				populateArray(meansArrayList);
 				statsTextField1.setText(Double.toString(calculateMean(meansArrayList)));
 				statsTextField2.setText(Double.toString(calculateSD(meansArrayList)));
@@ -127,7 +118,6 @@ public class Display {
 		clearButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				meanTextField.setText("");
 				sdTextField.setText("");
 				sampleSizeTextField.setText("");
 				numberSamplesTextField.setText("");
@@ -151,7 +141,7 @@ public class Display {
 		totalPanel.add(scrollPane, BorderLayout.EAST);
 
 		// Create and set up the window.
-		frame = new JFrame("Central Limit Theorem");
+		frame = new JFrame("Random Numbers - Binomial Distribution");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// Set up the content pane.
